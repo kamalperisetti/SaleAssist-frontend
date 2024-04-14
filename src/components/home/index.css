@@ -123,6 +123,13 @@ h2{
     .category-images{
         width:9%;       
     }
+    .category-images:hover{
+        cursor: pointer;
+        padding: 3px;
+        width: 7%;
+        border:1px solid #E5DFD9;
+        border-radius: 5px;
+    }
     b{
         font-size: 6px;
     }

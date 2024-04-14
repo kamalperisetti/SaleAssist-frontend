@@ -3,7 +3,7 @@ import { CiSearch } from "react-icons/ci";
 import { MdOutlinePersonOutline } from "react-icons/md";
 import { CiBookmark } from "react-icons/ci";
 import { HiOutlineShoppingBag } from "react-icons/hi2";
-import Allbags from "../images/Group475.png"
+import Allbags from "../images/Group 475.png"
 import Vanitypouch from '../images/Group 307.png'
 import TateBag from '../images/Group 300.png'
 import DuffleBag from '../images/Group 301.png'
