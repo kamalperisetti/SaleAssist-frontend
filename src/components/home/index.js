@@ -11,13 +11,39 @@ import LaptopSleve from '../images/Group 302.png'
 import MessangerBag from '../images/Group 303.png'
 import SlingBAg from '../images/Group 304.png'
 import HandBag from '../images/Group 305.png'
-import BrownBag from '../images/SIPR04018_01 1.png'
-import BlackBag from '../images/SIPR04031_01 1.png'
-import DarkBag from '../images/SIPR04085_01 1.png'
-import GaryBag from '../images/SIPR04086_01 1.png'
-import { TbShoppingBagPlus } from "react-icons/tb";
+import { useEffect, useState } from 'react';
+import axios from "axios"
+import Filtered from '../filterdData';
 
 const Home = () => {
+    const [products, setProducts] = useState([])
+    const [data, setData] = useState([])
+    const [select, setSelect] = useState("Backpacks")
+    useEffect(() => {
+        getTheProductsData()
+    }, [])
+    useEffect(() => {
+        filteData();
+    }, [select, products]);
+
+    const getTheProductsData = async() => {
+        try{
+            const response = await axios.get("https://saleassistbackend.onrender.com/")
+            const result = response.data
+            setProducts(result)
+
+        } catch(e){
+            console.log(e.message)
+        }
+    }
+
+   const filteData = () => {
+    const filteredData = products.filter((each) => (
+        each.category === select
+    ))
+    console.log(filteredData)
+    setData(filteredData)
+   }
     return(
         <div className = "home-container">
             <div className = 'header-container'>
@@ -39,95 +65,25 @@ const Home = () => {
                 <h3>Jewelery</h3>
             </div>
             <div className='caregory-images-container'>
-                <img className='category-images' src= {Allbags} alt = "bag" />
-                <img className='category-images' src={Vanitypouch} alt='Vanity Pouch' />
-                <img className='category-images' src = {TateBag} alt = "TateBag" />
-                <img className='category-images' src = {DuffleBag} alt = "Duffly Bag" />
-                <img className='category-images' src = {LaptopSleve} alt = "LaptopSleve" />
-                <img className='category-images' src = {MessangerBag} alt = "MessangerBag" />
-                <img className='category-images' src = {SlingBAg} alt = "SlingBAg" />
-                <img className='category-images' src = {HandBag} alt = "HandBag" />
+                <img className='category-images' src= {Allbags} alt = "bag" onClick={() => {setSelect("Backpacks"); filteData()}}/>
+                <img className='category-images' src={Vanitypouch} alt='Vanity Pouch' onClick={() => {setSelect("Vanity Pouch");filteData()}}/>
+                <img className='category-images' src = {TateBag} alt = "TateBag" onClick={() => {setSelect("Totebag"); filteData()}}/>
+                <img className='category-images' src = {DuffleBag} alt = "Duffly Bag" onClick={() => {setSelect("Duffle bag"); filteData()}}/>
+                <img className='category-images' src = {LaptopSleve} alt = "LaptopSleve" onClick={() => {setSelect("Laptop sleeve"); filteData()}}/>
+                <img className='category-images' src = {MessangerBag} alt = "MessangerBag" onClick={() => {setSelect("Messanger bag"); filteData()}}/>
+                <img className='category-images' src = {SlingBAg} alt = "SlingBAg" onClick={() => {setSelect("Sling bag"); filteData()}}/>
+                <img className='category-images' src = {HandBag} alt = "HandBag" onClick={() => {setSelect("Hand bag"); filteData()}}/>
             </div>
-            <b>Bags . Backepacks</b>
-            <div className='images-container'>
-                <div className='images-con'>
-                    <img className='images' src={BrownBag} alt = "BrownBag"/>
-                    <p className='txt'>The Metro Movers Black</p>
-                    <div className='cart-bton-rate'>
-                    <p className='rate'>$ 4899<span className='cut-rate'> 8999</span><span className='off'> (50% Off)</span></p>
-                    <TbShoppingBagPlus className='cart-logo'/>
-                    </div>
-                    <CiBookmark className='bookmark'/>
-                </div>
-                <div className='images-con'>
-                    <img className='images' src = {BlackBag} alt ="BlackBag"/>
-                    <p className='txt'>The Metro Movers Black</p>
-                    <div className='cart-bton-rate'>
-                    <p className='rate'>$ 4899<span className='cut-rate'> 8999</span><span className='off'> (50% Off)</span></p>
-                    <TbShoppingBagPlus className='cart-logo'/>
-                    </div>
-                    <CiBookmark className='bookmark'/>
-                </div>
-                <div className='images-con'>
-                    <img className='images' src = {DarkBag} alt ="DarkBag"/>
-                    <p className='txt'>The Metro Movers Black</p>
-                    <div className='cart-bton-rate'>
-                    <p className='rate'>$ 4899<span className='cut-rate'> 8999</span><span className='off'> (50% Off)</span></p>
-                    <TbShoppingBagPlus className='cart-logo'/>
-                    </div>
-                    <CiBookmark className='bookmark'/>
-                </div>
-                <div className='images-con'>
-                    <img className='images' src = {GaryBag} alt ="GrayBag"/>
-                    <p className='txt'>The Metro Movers Black</p>
-                    <div className='cart-bton-rate'>
-                    <p className='rate'>$ 4899<span className='cut-rate'> 8999</span><span className='off'> (50% Off)</span></p>
-                    <TbShoppingBagPlus className='cart-logo'/>
-                    </div>
-                    <CiBookmark className='bookmark'/>
-                </div>
-            </div>
-            <div className='images-container'>
-                <div className='images-con'>
-                    <img className='images' src={BrownBag} alt = "BrownBag"/>
-                    <p className='txt'>The Metro Movers Black</p>
-                    <div className='cart-bton-rate'>
-                    <p className='rate'>$ 4899<span className='cut-rate'> 8999</span><span className='off'> (50% Off)</span></p>
-                    <TbShoppingBagPlus className='cart-logo'/>
-                    </div>
-                    <CiBookmark className='bookmark'/>
-                </div>
-                <div className='images-con'>
-                    <img className='images' src = {BlackBag} alt ="BlackBag"/>
-                    <p className='txt'>The Metro Movers Black</p>
-                    <div className='cart-bton-rate'>
-                    <p className='rate'>$ 4899<span className='cut-rate'> 8999</span><span className='off'> (50% Off)</span></p>
-                    <TbShoppingBagPlus className='cart-logo'/>
-                    </div>
-                    <CiBookmark className='bookmark'/>
-                </div>
-                <div className='images-con'>
-                    <img className='images' src = {DarkBag} alt ="DarkBag"/>
-                    <p className='txt'>The Metro Movers Black</p>
-                    <div className='cart-bton-rate'>
-                        
-                    <p className='rate'>$ 4899<span className='cut-rate'> 8999</span><span className='off'> (50% Off)</span></p>
-                    <TbShoppingBagPlus className='cart-logo'/>
-                    </div>
-                    <CiBookmark className='bookmark'/>
-                </div>
-                <div className='images-con'>
-                    <img className='images' src = {GaryBag} alt ="GrayBag"/>
-                    <p className='txt'>The Metro Movers Black</p>
-                    <div className='cart-bton-rate'>
-                    <p className='rate'>$ 4899<span className='cut-rate'> 8999</span><span className='off'> (50% Off)</span></p>
-                    <TbShoppingBagPlus className='cart-logo'/>
-                    </div>
-                    <CiBookmark className='bookmark'/>
-                </div>
-            </div>
+            <b>Bags . {select}</b>
+            <ul className='images-container'>
+                {data.map((each) => (
+                    <Filtered details = {each} />
+                ))}
+            </ul>
         </div>
     )
 }
 
 export default Home
+  
+
